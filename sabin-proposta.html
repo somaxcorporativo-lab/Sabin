@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sabin — Proposta Estratégica</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #C8102E;
+  --red-dark: #8B0B1F;
+  --red-light: #F5E6E9;
+  --ink: #0F0F0F;
+  --ink2: #2C2C2C;
+  --muted: #6B6B6B;
+  --border: #E5E5E5;
+  --bg: #FAFAF8;
+  --white: #FFFFFF;
+  --green: #1A6B3A;
+  --green-light: #E6F4EC;
+  --amber: #B45309;
+  --amber-light: #FEF3C7;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ── HERO ───────────────────────────── */
+.hero {
+  min-height: 100vh;
+  background: var(--ink);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 50%, #C8102E22 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 10% 80%, #C8102E11 0%, transparent 50%);
+}
+
+.hero-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.hero-nav {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 64px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.logo-sabin {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--red);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .6; transform: scale(1.3); }
+}
+
+.logo-text {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.nav-tag {
+  font-size: 12px;
+  color: rgba(255,255,255,.4);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 64px;
+  max-width: 900px;
+}
+
+.hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 24px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp .6s ease forwards .2s;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(52px, 7vw, 96px);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  letter-spacing: -.02em;
+  margin-bottom: 32px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp .8s ease forwards .4s;
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--red);
+}
+
+.hero-sub {
+  font-size: 18px;
+  color: rgba(255,255,255,.55);
+  line-height: 1.7;
+  max-width: 560px;
+  font-weight: 300;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp .8s ease forwards .6s;
+}
+
+.hero-bottom {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 32px 64px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  opacity: 0;
+  animation: fadeUp .6s ease forwards .9s;
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-stat-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.hero-stat-label {
+  font-size: 11px;
+  color: rgba(255,255,255,.35);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.hero-stat-sep {
+  width: 1px;
+  height: 48px;
+  background: rgba(255,255,255,.12);
+}
+
+.scroll-cta {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,.4);
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.scroll-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SECTION BASE ───────────────────── */
+section { padding: 100px 64px; }
+
+.section-label {
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-label::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 48px;
+  background: var(--red);
+  opacity: .4;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+
+.section-body {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 620px;
+  font-weight: 300;
+}
+
+/* ── DORES ──────────────────────────── */
+.dores {
+  background: var(--white);
+}
+
+.dores-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-top: 60px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.dor-card {
+  background: var(--white);
+  padding: 40px 32px;
+  position: relative;
+  transition: background .2s;
+}
+
+.dor-card:hover { background: #FAFAFA; }
+
+.dor-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 64px;
+  font-weight: 900;
+  color: var(--red-light);
+  line-height: 1;
+  margin-bottom: 16px;
+  letter-spacing: -.03em;
+}
+
+.dor-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 2px;
+  margin-bottom: 16px;
+}
+
+.tag-critico { background: var(--red-light); color: var(--red-dark); }
+.tag-alto { background: var(--amber-light); color: var(--amber); }
+.tag-medio { background: #EEF2FF; color: #3730A3; }
+
+.dor-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+
+.dor-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ── CONVERSA COMPARATIVA ───────────── */
+.conversa-section {
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+
+.conversa-section .section-title { color: #fff; }
+.conversa-section .section-body { color: rgba(255,255,255,.45); }
+
+.conversa-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 60px;
+}
+
+.chat-window {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,.4);
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: #1A1A1A;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.chat-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.avatar-bot { background: #2C2C2C; color: #666; }
+.avatar-ai { background: var(--red); color: #fff; }
+
+.chat-info { flex: 1; }
+
+.chat-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.chat-status {
+  font-size: 11px;
+  color: #666;
+}
+
+.status-online { color: #4CAF50; }
+
+.chat-label-bad {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 2px;
+  background: rgba(200,16,46,.2);
+  color: #ff6b6b;
+}
+
+.chat-label-good {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 2px;
+  background: rgba(26,107,58,.3);
+  color: #4CAF50;
+}
+
+.chat-body {
+  background: #111;
+  padding: 20px;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.msg {
+  display: flex;
+  flex-direction: column;
+  max-width: 85%;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all .4s ease;
+}
+
+.msg.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.msg-bot { align-self: flex-start; }
+.msg-user { align-self: flex-end; }
+
+.msg-bubble {
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.msg-bot .msg-bubble {
+  background: #1E1E1E;
+  color: rgba(255,255,255,.8);
+  border-bottom-left-radius: 4px;
+}
+
+.msg-user .msg-bubble {
+  background: #075E54;
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.msg-ai .msg-bubble {
+  background: #1A2C1E;
+  color: rgba(255,255,255,.85);
+  border-bottom-left-radius: 4px;
+  border-left: 2px solid var(--red);
+}
+
+.msg-time {
+  font-size: 10px;
+  color: #444;
+  margin-top: 3px;
+  padding: 0 2px;
+}
+
+.msg-user .msg-time { text-align: right; }
+
+.typing {
+  display: flex;
+  gap: 4px;
+  padding: 12px 14px;
+  background: #1E1E1E;
+  border-radius: 12px;
+  border-bottom-left-radius: 4px;
+  width: fit-content;
+}
+
+.typing span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #555;
+  animation: blink 1.2s ease-in-out infinite;
+}
+
+.typing span:nth-child(2) { animation-delay: .2s; }
+.typing span:nth-child(3) { animation-delay: .4s; }
+
+@keyframes blink {
+  0%, 80%, 100% { opacity: .3; transform: scale(1); }
+  40% { opacity: 1; transform: scale(1.1); }
+}
+
+.menu-opts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.menu-opt {
+  padding: 8px 12px;
+  background: #252525;
+  border-radius: 8px;
+  font-size: 12px;
+  color: rgba(255,255,255,.6);
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.menu-opt:hover { background: #2C2C2C; }
+
+.error-msg {
+  background: rgba(200,16,46,.1) !important;
+  border-left: 2px solid var(--red) !important;
+  color: #ff9999 !important;
+}
+
+/* ── SOLUÇÃO ────────────────────────── */
+.solucao {
+  background: var(--bg);
+}
+
+.solucao-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  margin-top: 60px;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.feature-item {
+  display: flex;
+  gap: 24px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: padding-left .2s;
+}
+
+.feature-item:first-child { padding-top: 0; }
+.feature-item:last-child { border-bottom: none; }
+.feature-item:hover { padding-left: 8px; }
+
+.feature-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--red-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+
+.feature-content { flex: 1; }
+
+.feature-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.feature-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.phone-mockup {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.phone-frame {
+  width: 280px;
+  background: #111;
+  border-radius: 36px;
+  padding: 12px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.06),
+    0 40px 120px rgba(0,0,0,.5),
+    inset 0 0 0 1px rgba(255,255,255,.04);
+  position: relative;
+}
+
+.phone-screen {
+  background: #ECE5DD;
+  border-radius: 28px;
+  overflow: hidden;
+  min-height: 520px;
+}
+
+.phone-wapp-header {
+  background: #075E54;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.phone-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.phone-info { flex: 1; }
+.phone-name { font-size: 14px; font-weight: 600; color: #fff; }
+.phone-online { font-size: 11px; color: rgba(255,255,255,.7); }
+
+.phone-messages {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 360px;
+}
+
+.wapp-msg {
+  max-width: 88%;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all .35s ease;
+}
+
+.wapp-msg.visible { opacity: 1; transform: translateY(0); }
+.wapp-msg.out { align-self: flex-end; }
+.wapp-msg.in { align-self: flex-start; }
+
+.wapp-bubble {
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  position: relative;
+}
+
+.in .wapp-bubble {
+  background: #fff;
+  color: #111;
+  border-top-left-radius: 2px;
+}
+
+.out .wapp-bubble {
+  background: #DCF8C6;
+  color: #111;
+  border-top-right-radius: 2px;
+}
+
+.wapp-time {
+  font-size: 10px;
+  color: #999;
+  text-align: right;
+  margin-top: 2px;
+}
+
+/* ── ROI ────────────────────────────── */
+.roi-section {
+  background: var(--white);
+}
+
+.roi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 60px;
+}
+
+.roi-card {
+  background: var(--white);
+  padding: 40px 32px;
+  text-align: center;
+}
+
+.roi-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--ink);
+  letter-spacing: -.03em;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+.roi-unit {
+  font-size: 24px;
+  color: var(--red);
+}
+
+.roi-label {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: 10px;
+}
+
+/* ── PILOTO ─────────────────────────── */
+.piloto-section {
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+
+.piloto-section .section-title { color: #fff; }
+.piloto-section .section-body { color: rgba(255,255,255,.45); }
+
+.piloto-accent {
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(var(--red) 0%, transparent 70%);
+  opacity: .06;
+  pointer-events: none;
+}
+
+.steps-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  margin-top: 60px;
+  position: relative;
+}
+
+.steps-row::before {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: 48px;
+  right: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(200,16,46,.4), rgba(200,16,46,.1));
+}
+
+.step-card {
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.step-num-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.step-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.step-desc {
+  font-size: 12px;
+  color: rgba(255,255,255,.35);
+  line-height: 1.6;
+}
+
+/* ── CTA FINAL ──────────────────────── */
+.cta-section {
+  background: var(--red);
+  padding: 100px 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.cta-eyebrow {
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.6);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.cta-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.cta-sub {
+  font-size: 17px;
+  color: rgba(255,255,255,.65);
+  max-width: 500px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+  position: relative;
+  font-weight: 300;
+}
+
+.cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 4px;
+  position: relative;
+}
+
+/* ── FOOTER ─────────────────────────── */
+footer {
+  background: #0A0A0A;
+  padding: 32px 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-brand {
+  font-size: 12px;
+  color: rgba(255,255,255,.2);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.footer-note {
+  font-size: 12px;
+  color: rgba(255,255,255,.15);
+}
+
+/* ── OBSERVE ────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ─────────────────────── */
+@media (max-width: 960px) {
+  section { padding: 60px 32px; }
+  .hero-nav { padding: 24px 32px; }
+  .hero-content { padding: 0 32px; }
+  .hero-bottom { padding: 24px 32px; flex-wrap: wrap; }
+  .dores-grid { grid-template-columns: 1fr 1fr; }
+  .conversa-grid { grid-template-columns: 1fr; }
+  .solucao-grid { grid-template-columns: 1fr; }
+  .phone-mockup { display: none; }
+  .roi-grid { grid-template-columns: 1fr 1fr; }
+  .steps-row { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .steps-row::before { display: none; }
+  footer { padding: 24px 32px; flex-direction: column; gap: 8px; text-align: center; }
+  .cta-section { padding: 60px 32px; }
+}
+
+@media (max-width: 600px) {
+  .dores-grid { grid-template-columns: 1fr; }
+  .roi-grid { grid-template-columns: 1fr 1fr; }
+  .steps-row { grid-template-columns: 1fr; }
+  .hero-title { font-size: 42px; }
+  .hero-stat-val { font-size: 24px; }
+  .hero-stat-sep { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+
+  <nav class="hero-nav">
+    <div class="logo-sabin">
+      <div class="logo-dot"></div>
+      <span class="logo-text">Sabin</span>
+    </div>
+    <span class="nav-tag">Proposta Estratégica · 2025</span>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Transformação Digital · Atendimento</div>
+    <h1 class="hero-title">O paciente<br>merece mais<br>do que um <em>menu.</em></h1>
+    <p class="hero-sub">Uma proposta para humanizar o atendimento via WhatsApp com inteligência artificial conversacional — disponível 24h, sem scripts rígidos, sem frustração.</p>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-stat">
+      <span class="hero-stat-val">24h</span>
+      <span class="hero-stat-label">Disponibilidade</span>
+    </div>
+    <div class="hero-stat-sep"></div>
+    <div class="hero-stat">
+      <span class="hero-stat-val">−60%</span>
+      <span class="hero-stat-label">Tempo de resolução</span>
+    </div>
+    <div class="hero-stat-sep"></div>
+    <div class="hero-stat">
+      <span class="hero-stat-val">+50</span>
+      <span class="hero-stat-label">Pontos de NPS</span>
+    </div>
+    <div class="scroll-cta">
+      <span>Ver proposta</span>
+      <div class="scroll-arrow">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M6 2v8M2 7l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── DORES ── -->
+<section class="dores reveal">
+  <div class="section-label">O problema</div>
+  <h2 class="section-title">Por que o chatbot atual<br>está repelindo pacientes</h2>
+  <p class="section-body">O WhatsApp é hoje o canal mais acessado pelos pacientes do Sabin — e também o mais frustrante. Cada interação ruim é um paciente mais próximo da concorrência.</p>
+
+  <div class="dores-grid">
+    <div class="dor-card reveal">
+      <div class="dor-number">01</div>
+      <span class="dor-tag tag-critico">Crítico</span>
+      <h3 class="dor-title">Chatbot engessado</h3>
+      <p class="dor-desc">Qualquer mensagem fora do menu trava o atendimento. O paciente fica em loop respondendo números e desiste — muitas vezes indo para a concorrência.</p>
+    </div>
+    <div class="dor-card reveal">
+      <div class="dor-number">02</div>
+      <span class="dor-tag tag-critico">Crítico</span>
+      <h3 class="dor-title">Fila para humano</h3>
+      <p class="dor-desc">Quando o bot falha, o volume cai sobre os atendentes. Fora do horário, o paciente simplesmente não é atendido — e não volta.</p>
+    </div>
+    <div class="dor-card reveal">
+      <div class="dor-number">03</div>
+      <span class="dor-tag tag-alto">Alto</span>
+      <h3 class="dor-title">Agendamento travado</h3>
+      <p class="dor-desc">"Quero marcar um hemograma para quinta de manhã" não é reconhecido. O bot só entende o fluxo exato — qualquer variação falha silenciosamente.</p>
+    </div>
+    <div class="dor-card reveal">
+      <div class="dor-number">04</div>
+      <span class="dor-tag tag-alto">Alto</span>
+      <h3 class="dor-title">Preparo de exame genérico</h3>
+      <p class="dor-desc">O bot não personaliza a orientação. Diabético, gestante, quem toma medicação — todos recebem a mesma resposta. Resultado: cancelamentos por despreparo.</p>
+    </div>
+    <div class="dor-card reveal">
+      <div class="dor-number">05</div>
+      <span class="dor-tag tag-medio">Médio</span>
+      <h3 class="dor-title">Resultado sem contexto</h3>
+      <p class="dor-desc">O bot envia apenas o link do resultado. O paciente ansioso quer entender o que significa — e não encontra ajuda no canal mais acessível.</p>
+    </div>
+    <div class="dor-card reveal">
+      <div class="dor-number">06</div>
+      <span class="dor-tag tag-medio">Médio</span>
+      <h3 class="dor-title">Memória zero</h3>
+      <p class="dor-desc">A cada contato, o paciente precisa se identificar novamente. Sem histórico, sem contexto, sem vínculo — o oposto de um atendimento de qualidade.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── CONVERSA COMPARATIVA ── -->
+<section class="conversa-section reveal">
+  <div class="section-label">Na prática</div>
+  <h2 class="section-title" style="color:#fff">Veja a diferença<br>em uma conversa real</h2>
+  <p class="section-body">O mesmo paciente, o mesmo pedido — dois resultados completamente diferentes.</p>
+
+  <div class="conversa-grid">
+
+    <!-- BOT RUIM -->
+    <div class="chat-window">
+      <div class="chat-header">
+        <div class="chat-avatar avatar-bot">🤖</div>
+        <div class="chat-info">
+          <div class="chat-name">Sabin · Chatbot</div>
+          <div class="chat-status">automático</div>
+        </div>
+        <span class="chat-label-bad">Hoje</span>
+      </div>
+      <div class="chat-body" id="chat-bad">
+        <div class="msg msg-bot" id="b1">
+          <div class="msg-bubble">Olá! Escolha uma opção:<br><br>1️⃣ Agendar exame<br>2️⃣ Cancelar agendamento<br>3️⃣ Resultado de exame<br>4️⃣ Falar com atendente</div>
+          <div class="msg-time">09:01</div>
+        </div>
+        <div class="msg msg-user" id="b2">
+          <div class="msg-bubble">Oi, quero marcar um hemograma para quinta de manhã, jeju... sou diabético</div>
+          <div class="msg-time">09:02</div>
+        </div>
+        <div class="msg msg-bot" id="b3">
+          <div class="msg-bubble error-msg">Não entendi sua mensagem. Por favor, escolha uma das opções abaixo:</div>
+          <div class="menu-opts">
+            <div class="menu-opt">1️⃣ Agendar exame</div>
+            <div class="menu-opt">2️⃣ Cancelar agendamento</div>
+          </div>
+          <div class="msg-time">09:02</div>
+        </div>
+        <div class="msg msg-user" id="b4">
+          <div class="msg-bubble">1</div>
+          <div class="msg-time">09:03</div>
+        </div>
+        <div class="msg msg-bot" id="b5">
+          <div class="msg-bubble">Qual exame deseja agendar? Digite o <strong>nome exato</strong> do exame.</div>
+          <div class="msg-time">09:03</div>
+        </div>
+        <div class="msg msg-user" id="b6">
+          <div class="msg-bubble">hemograma completo, mas preciso saber sobre o jejum para diabético...</div>
+          <div class="msg-time">09:04</div>
+        </div>
+        <div class="msg msg-bot" id="b7">
+          <div class="msg-bubble error-msg">Aguarde, vou transferir para um atendente.<br><br>⏳ Tempo estimado: 35 minutos.</div>
+          <div class="msg-time">09:04</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IA BOA -->
+    <div class="chat-window">
+      <div class="chat-header">
+        <div class="chat-avatar avatar-ai">S</div>
+        <div class="chat-info">
+          <div class="chat-name">Sabin · Atendente IA</div>
+          <div class="chat-status status-online">● online agora</div>
+        </div>
+        <span class="chat-label-good">Proposta</span>
+      </div>
+      <div class="chat-body" id="chat-good">
+        <div class="msg msg-bot msg-ai" id="g1">
+          <div class="msg-bubble">Olá! Sou a assistente virtual do Sabin. Pode falar comigo como se fosse com um atendente — estou aqui para ajudar 😊</div>
+          <div class="msg-time">09:01</div>
+        </div>
+        <div class="msg msg-user" id="g2">
+          <div class="msg-bubble">Oi, quero marcar um hemograma para quinta de manhã, jeju... sou diabético</div>
+          <div class="msg-time">09:02</div>
+        </div>
+        <div class="msg msg-bot msg-ai" id="g3">
+          <div class="msg-bubble">Claro! Vou te ajudar com o agendamento. Para diabéticos, o preparo do hemograma tem algumas observações importantes — posso explicar antes de confirmar.</div>
+          <div class="msg-time">09:02</div>
+        </div>
+        <div class="msg msg-bot msg-ai" id="g4">
+          <div class="msg-bubble">✅ <strong>Jejum de 8h</strong> é necessário, mas <em>continue com seus medicamentos para diabetes normalmente</em> — não suspenda sem orientação médica.<br><br>Isso te ajuda?</div>
+          <div class="msg-time">09:02</div>
+        </div>
+        <div class="msg msg-user" id="g5">
+          <div class="msg-bubble">sim! perfeito. pode marcar pra quinta antes das 9h</div>
+          <div class="msg-time">09:03</div>
+        </div>
+        <div class="msg msg-bot msg-ai" id="g6">
+          <div class="msg-bubble">✅ <strong>Agendado!</strong><br><br>📅 Quinta-feira, 08h15<br>🏥 Sabin Asa Norte<br>🔬 Hemograma Completo<br><br>Você receberá um lembrete na véspera. Precisa de mais alguma coisa?</div>
+          <div class="msg-time">09:03</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ── SOLUÇÃO ── -->
+<section class="solucao reveal">
+  <div class="section-label">A solução</div>
+  <h2 class="section-title">Um atendente que pensa,<br>lembra e resolve</h2>
+  <p class="section-body">Não é um chatbot mais sofisticado. É uma mudança de paradigma: o paciente fala naturalmente, e o sistema entende, contextualiza e resolve.</p>
+
+  <div class="solucao-grid">
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-icon">💬</div>
+        <div class="feature-content">
+          <h3 class="feature-title">Linguagem natural total</h3>
+          <p class="feature-desc">O paciente fala como fala para qualquer pessoa. Sem menus, sem números, sem formatos obrigatórios.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🧠</div>
+        <div class="feature-content">
+          <h3 class="feature-title">Memória e contexto</h3>
+          <p class="feature-desc">Reconhece o paciente, lembra exames anteriores e personaliza cada resposta. O atendimento começa de onde parou.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📋</div>
+        <div class="feature-content">
+          <h3 class="feature-title">Orientação personalizada</h3>
+          <p class="feature-desc">Preparo de exame adaptado para diabéticos, gestantes, idosos, medicações específicas — sem respostas genéricas.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🔀</div>
+        <div class="feature-content">
+          <h3 class="feature-title">Transferência inteligente</h3>
+          <p class="feature-desc">Quando necessário, passa para atendente humano com todo o contexto já preenchido. Ninguém começa do zero.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🕐</div>
+        <div class="feature-content">
+          <h3 class="feature-title">Disponível 24h com qualidade</h3>
+          <p class="feature-desc">Madrugada, feriado, fim de semana — o atendimento mantém o mesmo padrão sem custo adicional de escala.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="phone-mockup">
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <div class="phone-wapp-header">
+            <div class="phone-avatar">S</div>
+            <div class="phone-info">
+              <div class="phone-name">Sabin · Assistente</div>
+              <div class="phone-online">● online agora</div>
+            </div>
+          </div>
+          <div class="phone-messages" id="phone-msgs">
+            <div class="wapp-msg in" id="p1">
+              <div class="wapp-bubble">Bom dia! Pode me ajudar?</div>
+              <div class="wapp-time">08:42</div>
+            </div>
+            <div class="wapp-msg out" id="p2">
+              <div class="wapp-bubble">Bom dia! Claro, com prazer. O que você precisa? 😊</div>
+              <div class="wapp-time">08:42</div>
+            </div>
+            <div class="wapp-msg in" id="p3">
+              <div class="wapp-bubble">preciso cancelar meu exame de amanhã e remarcar pra semana q vem</div>
+              <div class="wapp-time">08:43</div>
+            </div>
+            <div class="wapp-msg out" id="p4">
+              <div class="wapp-bubble">Encontrei seu agendamento de amanhã (Ultrassom, 10h). Vou cancelar e te mostrar os horários disponíveis na próxima semana:</div>
+              <div class="wapp-time">08:43</div>
+            </div>
+            <div class="wapp-msg out" id="p5">
+              <div class="wapp-bubble">📅 Seg 14/07 — 9h, 11h<br>📅 Ter 15/07 — 8h, 14h<br>📅 Qua 16/07 — 10h<br><br>Qual prefere?</div>
+              <div class="wapp-time">08:43</div>
+            </div>
+            <div class="wapp-msg in" id="p6">
+              <div class="wapp-bubble">terça às 8h perfeito</div>
+              <div class="wapp-time">08:44</div>
+            </div>
+            <div class="wapp-msg out" id="p7">
+              <div class="wapp-bubble">✅ Remarcado! Terça 15/07, 08h00. Lembrete no dia anterior. Até lá! 👋</div>
+              <div class="wapp-time">08:44</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── ROI ── -->
+<section class="roi-section reveal">
+  <div class="section-label">Impacto esperado</div>
+  <h2 class="section-title">Números que a<br>diretoria entende</h2>
+  <p class="section-body">Estimativas baseadas em implementações de IA conversacional em redes de saúde de porte similar ao Sabin.</p>
+
+  <div class="roi-grid">
+    <div class="roi-card reveal">
+      <div class="roi-val"><span class="roi-unit">−</span>60%</div>
+      <p class="roi-label">Chamadas transferidas para atendente humano</p>
+    </div>
+    <div class="roi-card reveal">
+      <div class="roi-val"><span class="roi-unit">−</span>30%</div>
+      <p class="roi-label">Cancelamentos por despreparo de exame</p>
+    </div>
+    <div class="roi-card reveal">
+      <div class="roi-val"><span class="roi-unit">+</span>50</div>
+      <p class="roi-label">Pontos no NPS de atendimento digital</p>
+    </div>
+    <div class="roi-card reveal">
+      <div class="roi-val">24h</div>
+      <p class="roi-label">Resolução completa sem horário comercial</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── PILOTO ── -->
+<section class="piloto-section reveal">
+  <div class="piloto-accent"></div>
+  <div class="section-label">Proposta de implantação</div>
+  <h2 class="section-title" style="color:#fff">Piloto em 30 dias,<br>sem risco</h2>
+  <p class="section-body">Começamos pequeno, medimos tudo e escalamos com dados reais — não com promessas.</p>
+
+  <div class="steps-row">
+    <div class="step-card">
+      <div class="step-num-wrap">1</div>
+      <h4 class="step-title">Diagnóstico</h4>
+      <p class="step-desc">Mapeamos os fluxos mais críticos do WhatsApp atual e os pontos de maior abandono.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num-wrap">2</div>
+      <h4 class="step-title">Prototipagem</h4>
+      <p class="step-desc">Desenvolvemos a IA com a linguagem e os protocolos específicos do Sabin.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num-wrap">3</div>
+      <h4 class="step-title">Piloto fechado</h4>
+      <p class="step-desc">Testamos em uma unidade ou fluxo específico com monitoramento em tempo real.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num-wrap">4</div>
+      <h4 class="step-title">Ajuste fino</h4>
+      <p class="step-desc">Com dados reais, refinamos tom, fluxos e integrações antes da expansão.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num-wrap">5</div>
+      <h4 class="step-title">Escala</h4>
+      <p class="step-desc">Expandimos para todas as unidades com a confiança de resultados comprovados.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <p class="cta-eyebrow">Próximo passo</p>
+  <h2 class="cta-title">O paciente já espera<br>mais do Sabin.</h2>
+  <p class="cta-sub">A tecnologia está pronta. O momento é agora. Vamos construir juntos o melhor atendimento digital da saúde no Brasil.</p>
+  <div class="cta-badge">
+    <div style="width:8px;height:8px;border-radius:50%;background:#fff;opacity:.8;animation:pulse 2s ease-in-out infinite"></div>
+    Demo disponível para apresentação ao vivo
+  </div>
+</section>
+
+<footer>
+  <span class="footer-brand">Sabin Medicina Diagnóstica · Proposta Estratégica</span>
+  <span class="footer-note">Confidencial · 2025</span>
+</footer>
+
+
+<script>
+// Intersection Observer para reveals
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => {
+    if (el.isIntersecting) {
+      el.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+revealEls.forEach(el => observer.observe(el));
+
+// Animar mensagens do chat BAD
+const badMsgs = ['b1','b2','b3','b4','b5','b6','b7'];
+let badTimer = null;
+
+function animateBadChat() {
+  badMsgs.forEach((id, i) => {
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('visible');
+    }, i * 900);
+  });
+}
+
+// Animar mensagens do chat GOOD
+const goodMsgs = ['g1','g2','g3','g4','g5','g6'];
+
+function animateGoodChat() {
+  goodMsgs.forEach((id, i) => {
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('visible');
+    }, i * 900 + 400);
+  });
+}
+
+// Animar phone
+const phoneMsgs = ['p1','p2','p3','p4','p5','p6','p7'];
+
+function animatePhone() {
+  phoneMsgs.forEach((id, i) => {
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('visible');
+    }, i * 700);
+  });
+}
+
+// Observar seções para disparar animações
+const chatSection = document.querySelector('.conversa-section');
+const phoneSection = document.querySelector('.solucao');
+
+const chatObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      animateBadChat();
+      animateGoodChat();
+      chatObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+const phoneObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      animatePhone();
+      phoneObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+if (chatSection) chatObserver.observe(chatSection);
+if (phoneSection) phoneObserver.observe(phoneSection);
+</script>
+
+</body>
+</html>
